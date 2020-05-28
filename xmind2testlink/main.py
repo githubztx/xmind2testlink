@@ -75,26 +75,26 @@ def main(xacpt, jira_token, project_name_key, xmind):
         # for test_case in test_suit
     print()
 
-
-def init_argument():
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--xacpt', required=True,
-                        help="访问 https://olapio.atlassian.net/browse/QUARD-277 =》浏览器按F12 或者右击检查=> 搜索 `testStepFields` 对应的请求（Request headers）字段X-acpt对应的值")
-    parser.add_argument('--token', default="d2VpLnpob3VAa3lsaWdlbmNlLmlvOm8xeGh0M2owSVdheUdxWWx4bUUwNzU2Rg==",
-                        help="默认使用代码者的KEY,建议改成自己的,通过jira 链接 https://id.atlassian.com/manage-profile/security/api-tokens 申请到自己的token,在base64编码 https://www.blitter.se/utils/basic-authentication-header-generator")
-    parser.add_argument('--project', default='KE',
-                        help="默认使用KE，访问 https://olapio.atlassian.net/projects 拿到对应项目的key")
-    parser.add_argument('--xmind', required=True,
-                        help="你的xmind的文件的全路径。for example：/Users/wei.zhou/Documents/4x版本迭代/spirnt06/Kyligence Enterprise-sprint06.xmind")
-    args = parser.parse_args()
-    return args
+#
+# def init_argument():
+#     parser = argparse.ArgumentParser()
+#     parser.add_argument('--xacpt', required=True,
+#                         help="访问 https://olapio.atlassian.net/browse/QUARD-277 =》浏览器按F12 或者右击检查=> 搜索 `testStepFields` 对应的请求（Request headers）字段X-acpt对应的值")
+#     parser.add_argument('--token', default="d2VpLnpob3VAa3lsaWdlbmNlLmlvOm8xeGh0M2owSVdheUdxWWx4bUUwNzU2Rg==",
+#                         help="默认使用代码者的KEY,建议改成自己的,通过jira 链接 https://id.atlassian.com/manage-profile/security/api-tokens 申请到自己的token,在base64编码 https://www.blitter.se/utils/basic-authentication-header-generator")
+#     parser.add_argument('--project', default='KE',
+#                         help="默认使用KE，访问 https://olapio.atlassian.net/projects 拿到对应项目的key")
+#     parser.add_argument('--xmind', required=True,
+#                         help="你的xmind的文件的全路径。for example：/Users/wei.zhou/Documents/4x版本迭代/spirnt06/Kyligence Enterprise-sprint06.xmind")
+#     args = parser.parse_args()
+#     return args
 
 
 if __name__ == '__main__':
     # eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiI1YzdlNzExYjU5N2MwYTFjZmRmOTA5MTkiLCJpc3MiOiJjZGVmNjk5Ny05NTQyLTMwODktOTM0Yy00ODViMWE3MTE3N2QiLCJjb250ZXh0Ijp7ImxpY2Vuc2UiOnsiYWN0aXZlIjp0cnVlfSwiamlyYSI6eyJpc3N1ZSI6eyJpc3N1ZXR5cGUiOnsiaWQiOiIxMDA0MyJ9LCJrZXkiOiJRVUFSRC0yNzciLCJpZCI6IjQwNDM0In0sInByb2plY3QiOnsia2V5IjoiUVVBUkQiLCJpZCI6IjEwMDQwIn19fSwiZXhwIjoxNTg3ODczMzMwLCJpYXQiOjE1ODc4NzI0MzB9.1dCncEn8BP0-YL-go1tik7Yh81O3aNfZ8Oal4yXIiY8
-    ARG = init_argument()
-    xacpt = ARG.xacpt
-    jira_token = ARG.token
-    project_name_key = ARG.project
-    xmind = ARG.xmind
+    # ARG = init_argument()
+    xacpt ='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJjb20ueHBhbmRpdC5wbHVnaW5zLnhyYXkiLCJpYXQiOjE1OTA2NTM5NTksInN1YiI6IjVkNzRjNjYxY2RiNjY1MGM0YmY3ZmZkYSIsImV4cCI6MTU5MDc0MDM1OSwiYXVkIjpbImNkZWY2OTk3LTk1NDItMzA4OS05MzRjLTQ4NWIxYTcxMTc3ZCJdLCJjb250ZXh0Ijp7ImxpY2Vuc2UiOnsiYWN0aXZlIjp0cnVlfSwiamlyYSI6eyJpc3N1ZSI6eyJpc3N1ZXR5cGUiOnsiaWQiOiIxMDA0MyJ9LCJrZXkiOiJCSS0xNTkiLCJpZCI6IjQyNjY4In0sInByb2plY3QiOnsia2V5IjoiQkkiLCJpZCI6IjEwMDMxIn19fX0.ekbE9TXNGw2cOc-i1i0u_aGshW-6ytRj_j8YVCeTOxE'
+    jira_token = "ZG9uZ2RvbmcuemhvdUBreWxpZ2VuY2UuaW86eFlNOUdpYkZJR21GNUs2Mm42MHNEM0E4"
+    project_name_key = "MDX"
+    xmind = "/Users/dongdong.zhou/Desktop/MDX.xmind"
     main(xacpt, jira_token, project_name_key, xmind)

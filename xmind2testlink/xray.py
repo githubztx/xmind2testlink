@@ -12,8 +12,11 @@ class xray_issue:
     def create_xray_issue(project_name_key, issue_name, jira_token, importance):
         url = "https://olapio.atlassian.net/rest/api/2/issue"
         importance_list = [0, 1, 2, 3]
-        if int(importance) not in importance_list:
-            importance = 3
+        if importance is not None:
+            if int(importance) not in importance_list:
+                importance = 3
+        else:
+            return
         issue_name = str(issue_name).replace('\r\n', '')
         payload = {
             "fields": {"project": {"key": project_name_key},
@@ -50,6 +53,8 @@ class xray_issue:
 
     def create_xray_full_issue(project_name_key, issue_name, test_case, link_issue_key, jira_token, X_acpt):
         # test_case = TestCase(test_case)
+        if test_case.importance is  None:
+            return
         (id, key) = xray_issue.create_xray_issue(project_name_key, issue_name, jira_token, test_case.importance)
         xray_issue.link_issue(link_issue_key, key, jira_token)
 
