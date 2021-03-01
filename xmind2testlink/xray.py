@@ -23,6 +23,13 @@ class xray_issue:
                        "summary": issue_name,
                        "priority": {"name": "P" + str(importance)},
                        "description": "example of manual test",
+                       "customfield_10048":[{"id": "10168"}],
+                       "customfield_10137":  {"id": "10204"},
+                       "customfield_10146": {"id": "10224"},
+                       "customfield_10139": {"id": "10206"},
+                       "customfield_10145": {"id": "10216"},
+                       "customfield_10089": {"id": "10133"},
+                       "assignee":{"accountId": "5d74c661cdb6650c4bf7ffda"},
                        "issuetype": {"name": "Test"}}}
         headers = {
             'Authorization': 'Basic ' + jira_token,
@@ -30,6 +37,7 @@ class xray_issue:
         }
 
         response = requests.request("POST", url, headers=headers, data=json.dumps(payload))
+        print(response.json())
         print('成功创建了xray issue https://olapio.atlassian.net/browse/' + response.json()['key'])
         return response.json()['id'], response.json()['key']
 
@@ -45,7 +53,9 @@ class xray_issue:
 
         response = requests.post('https://xray.cloud.xpand-it.com/api/internal/test/' + key + '/step', headers=headers,
                                  data=json.dumps(data))
-        if response.status_code == 500:
+        print(response.json())
+        print(response.status_code)
+        if response.status_code == 401:
             print(response.json()['error'])
             exit(1)
         # else:
@@ -53,7 +63,8 @@ class xray_issue:
 
     def create_xray_full_issue(project_name_key, issue_name, test_case, link_issue_key, jira_token, X_acpt):
         # test_case = TestCase(test_case)
-        if test_case.importance is  None:
+        if test_case.importance is None:
+            print('no importance')
             return
         (id, key) = xray_issue.create_xray_issue(project_name_key, issue_name, jira_token, test_case.importance)
         xray_issue.link_issue(link_issue_key, key, jira_token)
